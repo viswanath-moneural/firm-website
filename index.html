@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Moeural — AI & Software Consulting. We build intelligent systems that scale your business." />
+  <meta property="og:title" content="Moeural — AI & Software Consulting" />
+  <meta property="og:description" content="We build intelligent systems that scale your business." />
+  <meta property="og:url" content="https://moeural.com" />
+  <title>Moeural — AI & Software Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">moeural<span class="accent-dot">.</span></a>
+    <div class="nav-links">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-cta">Let's Talk →</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" class="mobile-link" onclick="closeMobileMenu()">Services</a>
+    <a href="#work" class="mobile-link" onclick="closeMobileMenu()">Work</a>
+    <a href="#about" class="mobile-link" onclick="closeMobileMenu()">About</a>
+    <a href="#contact" class="mobile-link" onclick="closeMobileMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        AI & Software Consulting — Hyderabad, India
+      </div>
+
+      <h1 class="hero-title">
+        We build<br />
+        <em>intelligent</em><br />
+        <span class="hero-title-outline">systems</span>
+      </h1>
+
+      <p class="hero-sub">
+        From idea to deployment — AI strategy, custom software,<br class="br-desktop" />
+        and scalable SaaS products that actually work.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Start a Project</a>
+        <a href="#services" class="btn-ghost">See our work ↓</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">50+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">₹0</span>
+          <span class="stat-label">Infra Waste for Clients</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">5×</span>
+          <span class="stat-label">Avg ROI Delivered</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="t-dot red"></span>
+          <span class="t-dot yellow"></span>
+          <span class="t-dot green"></span>
+          <span class="t-title">moeural.ai — terminal</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">init moeural --client=you</span></div>
+          <div class="t-line t-out">✓ Analyzing business workflows...</div>
+          <div class="t-line t-out">✓ Designing AI architecture...</div>
+          <div class="t-line t-out">✓ Building custom software...</div>
+          <div class="t-line t-out success">✓ System live. Revenue growing.</div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">▊</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>AI Strategy</span><span class="mx">✦</span>
+      <span>ERPNext SaaS</span><span class="mx">✦</span>
+      <span>Custom Software</span><span class="mx">✦</span>
+      <span>LLM Integration</span><span class="mx">✦</span>
+      <span>Manufacturing Tech</span><span class="mx">✦</span>
+      <span>Process Automation</span><span class="mx">✦</span>
+      <span>Data Pipelines</span><span class="mx">✦</span>
+      <span>Mobile Apps</span><span class="mx">✦</span>
+      <span>AI Strategy</span><span class="mx">✦</span>
+      <span>ERPNext SaaS</span><span class="mx">✦</span>
+      <span>Custom Software</span><span class="mx">✦</span>
+      <span>LLM Integration</span><span class="mx">✦</span>
+      <span>Manufacturing Tech</span><span class="mx">✦</span>
+      <span>Process Automation</span><span class="mx">✦</span>
+      <span>Data Pipelines</span><span class="mx">✦</span>
+      <span>Mobile Apps</span><span class="mx">✦</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Services built<br /><em>for the real world</em></h2>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card" data-index="01">
+          <div class="service-icon">⬡</div>
+          <h3 class="service-name">AI Consulting & Strategy</h3>
+          <p class="service-desc">We help businesses understand exactly where AI creates value — and where it doesn't. No hype, just clear ROI-driven roadmaps.</p>
+          <ul class="service-list">
+            <li>AI readiness audit</li>
+            <li>LLM integration (Claude, GPT-4)</li>
+            <li>Custom model fine-tuning</li>
+            <li>AI-powered dashboards</li>
+          </ul>
+          <div class="service-arrow">→</div>
+        </div>
+
+        <div class="service-card featured" data-index="02">
+          <div class="service-icon">◈</div>
+          <h3 class="service-name">Micro-SaaS Development</h3>
+          <p class="service-desc">Industry-specific SaaS products with near-zero infrastructure cost per client. Built on ERPNext + MariaDB for maximum scalability.</p>
+          <ul class="service-list">
+            <li>ERPNext customization</li>
+            <li>Multi-tenant architecture</li>
+            <li>Automated client onboarding</li>
+            <li>White-label products</li>
+          </ul>
+          <div class="service-arrow">→</div>
+        </div>
+
+        <div class="service-card" data-index="03">
+          <div class="service-icon">⬟</div>
+          <h3 class="service-name">Custom Software</h3>
+          <p class="service-desc">Full-stack applications built mobile-first. From manufacturing dashboards to inventory systems — we ship fast and iterate faster.</p>
+          <ul class="service-list">
+            <li>Production management apps</li>
+            <li>Mobile-first web apps</li>
+            <li>Google Workspace automation</li>
+            <li>API integrations</li>
+          </ul>
+          <div class="service-arrow">→</div>
+        </div>
+
+        <div class="service-card" data-index="04">
+          <div class="service-icon">◇</div>
+          <h3 class="service-name">Process Automation</h3>
+          <p class="service-desc">Turn manual, time-consuming workflows into automated systems. We specialize in manufacturing, logistics, and operations.</p>
+          <ul class="service-list">
+            <li>Workflow automation</li>
+            <li>WhatsApp business integration</li>
+            <li>Automated reporting</li>
+            <li>Smart alert systems</li>
+          </ul>
+          <div class="service-arrow">→</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section class="process section" id="work">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">How We Work</span>
+        <h2 class="section-title">From idea to<br /><em>live system</em></h2>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3 class="step-title">Discover</h3>
+            <p class="step-desc">We spend time understanding your actual workflows, pain points, and goals. No assumptions, just deep listening.</p>
+          </div>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3 class="step-title">Design</h3>
+            <p class="step-desc">Architecture first. We design the system before writing code — choosing the right stack for your scale and budget.</p>
+          </div>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3 class="step-title">Build</h3>
+            <p class="step-desc">Iterative development with weekly demos. You see progress every week — no black-box 3-month builds.</p>
+          </div>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h3 class="step-title">Scale</h3>
+            <p class="step-desc">Deploy, monitor, and grow. We stay with you post-launch — adding AI features, expanding to new clients, optimizing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOCUS INDUSTRIES -->
+  <section class="industries section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Industries</span>
+        <h2 class="section-title">Where we've<br /><em>gone deep</em></h2>
+      </div>
+
+      <div class="industry-grid">
+        <div class="industry-card">
+          <span class="industry-icon">🏭</span>
+          <h4>Manufacturing</h4>
+          <p>Production tracking, machine monitoring, quality control, and AI-powered efficiency insights.</p>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">📦</span>
+          <h4>Distribution & Logistics</h4>
+          <p>Inventory management, purchase automation, vendor tracking, and real-time stock alerts.</p>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">🏥</span>
+          <h4>Healthcare</h4>
+          <p>Patient management systems, appointment automation, and clinical workflow digitization.</p>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">🛒</span>
+          <h4>Retail & D2C</h4>
+          <p>Order management, customer analytics, WhatsApp commerce, and demand forecasting.</p>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">🎓</span>
+          <h4>Education</h4>
+          <p>LMS platforms, student tracking, automated assessments, and AI tutoring systems.</p>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">⚙️</span>
+          <h4>Professional Services</h4>
+          <p>CRM systems, project management, billing automation, and client reporting dashboards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY MOEURAL -->
+  <section class="why section">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-left">
+          <span class="section-tag">Why Moeural</span>
+          <h2 class="section-title">We're builders<br /><em>not vendors</em></h2>
+          <p class="why-body">
+            We don't sell you software licenses. We build systems we'd use ourselves — then help you scale them into a business advantage.
+          </p>
+          <p class="why-body">
+            Every system we build starts with one question: <strong>"What would make this near-zero cost to run at 100 clients?"</strong> That mindset shapes every architecture decision we make.
+          </p>
+          <a href="#contact" class="btn-primary">Work with us</a>
+        </div>
+        <div class="why-right">
+          <div class="why-point">
+            <span class="why-check">✓</span>
+            <div>
+              <strong>No bloated tech stacks</strong>
+              <p>We choose boring, proven technology that scales cheaply.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <span class="why-check">✓</span>
+            <div>
+              <strong>Built for Indian SMEs</strong>
+              <p>We understand ₹1,500/month budgets and 10-person teams.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <span class="why-check">✓</span>
+            <div>
+              <strong>AI that's actually useful</strong>
+              <p>No chatbots for show. Real automation that saves hours daily.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <span class="why-check">✓</span>
+            <div>
+              <strong>We stay post-launch</strong>
+              <p>Month-to-month retainers. We grow as your product grows.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <span class="why-check">✓</span>
+            <div>
+              <strong>Hyderabad-based, India-focused</strong>
+              <p>We understand local compliance, languages, and business culture.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pricing</span>
+        <h2 class="section-title">Transparent.<br /><em>No surprises.</em></h2>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-tag">Starter</div>
+          <div class="pricing-price">₹25,000<span>/project</span></div>
+          <p class="pricing-desc">For small businesses needing their first digital system.</p>
+          <ul class="pricing-list">
+            <li>Custom web application</li>
+            <li>Google Sheets / Apps Script</li>
+            <li>Mobile-responsive UI</li>
+            <li>1 month post-launch support</li>
+            <li>Basic analytics dashboard</li>
+          </ul>
+          <a href="#contact" class="btn-ghost-small">Get Started →</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-tag">Growth</div>
+          <div class="pricing-price">₹75,000<span>/project</span></div>
+          <p class="pricing-desc">Full ERPNext setup with custom modules and AI features.</p>
+          <ul class="pricing-list">
+            <li>ERPNext + MariaDB setup</li>
+            <li>Custom DocTypes & modules</li>
+            <li>AI-powered reports & alerts</li>
+            <li>Mobile-first custom frontend</li>
+            <li>3 months post-launch support</li>
+            <li>Automated client onboarding</li>
+          </ul>
+          <a href="#contact" class="btn-primary-small">Get Started →</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-tag">Scale</div>
+          <div class="pricing-price">Custom</div>
+          <p class="pricing-desc">Full Micro-SaaS product with multi-tenant architecture.</p>
+          <ul class="pricing-list">
+            <li>Multi-tenant SaaS platform</li>
+            <li>White-label product</li>
+            <li>AI chatbot integration</li>
+            <li>WhatsApp automation</li>
+            <li>Ongoing retainer support</li>
+            <li>Revenue share model available</li>
+          </ul>
+          <a href="#contact" class="btn-ghost-small">Let's Talk →</a>
+        </div>
+      </div>
+
+      <p class="pricing-note">All projects include architecture consultation, deployment, and knowledge transfer. Monthly retainer from ₹15,000/month available.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="contact-title">
+            Ready to build<br />something<br /><em>intelligent?</em>
+          </h2>
+          <p class="contact-sub">Tell us about your project. We respond within 24 hours.</p>
+
+          <div class="contact-details">
+            <div class="contact-detail">
+              <span class="cd-label">Email</span>
+              <a href="mailto:hello@moeural.com" class="cd-value">hello@moeural.com</a>
+            </div>
+            <div class="contact-detail">
+              <span class="cd-label">WhatsApp</span>
+              <a href="https://wa.me/919000000000" class="cd-value">+91 90000 00000</a>
+            </div>
+            <div class="contact-detail">
+              <span class="cd-label">Location</span>
+              <span class="cd-value">Hyderabad, Telangana, India</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Your Name *</label>
+                <input type="text" class="form-input" placeholder="Rahul Sharma" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Company</label>
+                <input type="text" class="form-input" placeholder="Your Company" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email *</label>
+              <input type="email" class="form-input" placeholder="rahul@company.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">What do you need?</label>
+              <select class="form-input form-select">
+                <option value="">Select a service…</option>
+                <option>AI Consulting & Strategy</option>
+                <option>Micro-SaaS Development</option>
+                <option>Custom Software</option>
+                <option>Process Automation</option>
+                <option>ERPNext Setup</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tell us about your project *</label>
+              <textarea class="form-input form-textarea" placeholder="Describe your business problem, current workflow, and what you'd like to achieve…" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary form-submit">
+              <span class="submit-text">Send Message →</span>
+              <span class="submit-loading" style="display:none">Sending…</span>
+            </button>
+            <p class="form-note">We respond within 24 hours. No spam, ever.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo">moeural<span class="accent-dot">.</span></span>
+          <p class="footer-tagline">Building intelligent systems<br />for ambitious businesses.</p>
+        </div>
+        <div class="footer-links-group">
+          <span class="footer-group-title">Services</span>
+          <a href="#services">AI Consulting</a>
+          <a href="#services">Micro-SaaS</a>
+          <a href="#services">Custom Software</a>
+          <a href="#services">Automation</a>
+        </div>
+        <div class="footer-links-group">
+          <span class="footer-group-title">Company</span>
+          <a href="#about">About</a>
+          <a href="#work">How We Work</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-links-group">
+          <span class="footer-group-title">Connect</span>
+          <a href="mailto:hello@moeural.com">Email</a>
+          <a href="https://wa.me/919000000000">WhatsApp</a>
+          <a href="https://linkedin.com/company/moeural">LinkedIn</a>
+          <a href="https://twitter.com/moeural">Twitter</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Moeural. All rights reserved.</span>
+        <span>Hyderabad, India 🇮🇳</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
