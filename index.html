@@ -3,263 +3,829 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moneural — Building Intelligent Systems</title>
-    
-    <!-- Typography -->
+    <title>Moneural — Engineering Intelligent Advantages</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --bg: #050505;
-            --fg: #ffffff;
+            --bg2: #0a0a0a;
+            --fg: #f5f5f0;
             --accent: #7000ff;
-            --muted: #888888;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-            --font-main: 'Syne', sans-serif;
-            --font-serif: 'Instrument Serif', serif;
-            --font-mono: 'DM Mono', monospace;
+            --accent2: #a855f7;
+            --muted: #666;
+            --muted2: #999;
+            --border: rgba(255,255,255,0.07);
+            --border2: rgba(112,0,255,0.25);
+            --font: 'Syne', sans-serif;
+            --serif: 'Instrument Serif', serif;
+            --mono: 'DM Mono', monospace;
+            --gutter: 2.5rem;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; background: var(--bg); }
 
         body {
-            background-color: var(--bg);
+            background: var(--bg);
             color: var(--fg);
-            font-family: var(--font-main);
+            font-family: var(--font);
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        /* --- Custom Cursor --- */
+        /* CURSOR */
         #cursor {
-            width: 8px; height: 8px; background: var(--fg);
-            border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
-            mix-blend-mode: difference; transition: transform 0.1s;
+            width: 6px; height: 6px;
+            background: var(--fg);
+            border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s cubic-bezier(0.23,1,0.32,1);
+            transform: translate(-50%, -50%);
+        }
+        #cursor-ring {
+            width: 32px; height: 32px;
+            border: 1px solid rgba(112,0,255,0.5);
+            border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all 0.35s cubic-bezier(0.23,1,0.32,1);
         }
 
-        /* --- Layout --- */
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
-        .section { padding: 8rem 0; }
-        em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent); text-transform: none; }
-        .accent-dot { color: var(--accent); }
+        /* LAYOUT */
+        .wrap { max-width: 1360px; margin: 0 auto; padding: 0 var(--gutter); }
+        section { padding: 9rem 0; }
+        em { font-family: var(--serif); font-style: italic; color: var(--accent2); }
 
-        /* --- Header --- */
+        /* ─── HEADER ─── */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 1.5rem 0; backdrop-filter: blur(12px);
+            padding: 1.25rem 0;
+            background: rgba(5,5,5,0.8);
+            backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--border);
         }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .header-logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--fg); letter-spacing: -1px; }
-        .nav-links { display: flex; gap: 2.5rem; }
-        .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--fg); }
-        .nav-cta { color: var(--accent) !important; }
+        .header-inner {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo-link {
+            display: flex; align-items: center; gap: 0.75rem;
+            text-decoration: none; color: var(--fg);
+        }
+        .logo-img { width: 36px; height: 36px; object-fit: contain; }
+        .logo-text {
+            font-size: 1.4rem; font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+        .logo-dot { color: var(--accent); }
+        nav { display: flex; align-items: center; gap: 2.5rem; }
+        nav a {
+            text-decoration: none; color: var(--muted2);
+            font-size: 0.8rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            transition: color 0.25s;
+        }
+        nav a:hover { color: var(--fg); }
+        .cta-link {
+            padding: 0.55rem 1.3rem;
+            background: var(--accent);
+            color: #fff !important;
+            border-radius: 4px;
+            letter-spacing: 0 !important;
+            font-size: 0.85rem !important;
+            font-weight: 700 !important;
+            text-transform: none !important;
+            transition: background 0.25s, transform 0.2s !important;
+        }
+        .cta-link:hover { background: var(--accent2) !important; transform: translateY(-1px); }
 
-        /* --- Hero --- */
+        /* ─── HERO ─── */
         .hero {
-            min-height: 100vh; display: flex; align-items: center; position: relative;
-            background-image: radial-gradient(circle at 2px 2px, var(--border) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-        .hero-content { position: relative; z-index: 2; width: 60%; }
-        .hero-title { font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: 0.85; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; }
-        .hero-p { font-family: var(--font-mono); color: var(--muted); font-size: 1.1rem; max-width: 500px; line-height: 1.6; }
-        
-        .hero-visual {
-            position: absolute; right: 0; top: 50%; transform: translateY(-50%);
-            width: 35%; height: 400px; background: #0a0a0a; border: 1px solid var(--border);
-            border-radius: 12px; box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-            font-family: var(--font-mono); padding: 20px; overflow: hidden;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding-top: 7rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* --- Terminal Text --- */
-        .t-red { color: #ff5f56; } .t-green { color: #27c93f; } .t-blue { color: #00d4ff; }
-
-        /* --- Services Grid --- */
-        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
-        .service-card { background: var(--bg); padding: 4rem; position: relative; overflow: hidden; }
-        .service-card:hover .service-bg { transform: scale(1.1); opacity: 0.1; }
-        .service-bg { 
-            position: absolute; top: -20%; right: -20%; font-size: 15rem; 
-            font-weight: 800; opacity: 0.03; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        /* Grid dots */
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+            background-size: 36px 36px;
+            pointer-events: none;
         }
-        .service-card h3 { font-size: 2rem; margin-bottom: 1rem; position: relative; }
-        .service-card p { color: var(--muted); max-width: 350px; position: relative; }
 
-        /* --- Marquee --- */
-        .marquee { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem 0; overflow: hidden; display: flex; }
-        .marquee-track { display: flex; gap: 4rem; animation: scroll 30s linear infinite; white-space: nowrap; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+        /* Glow blob */
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(112,0,255,0.18) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
 
-        /* --- Footer --- */
-        .footer { padding: 6rem 0 3rem 0; border-top: 1px solid var(--border); background: #030303; }
-        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
-        .footer-logo { font-size: 2rem; font-weight: 800; display: block; margin-bottom: 1.5rem; letter-spacing: -1px; }
-        .footer-tagline { color: var(--muted); line-height: 1.6; font-size: 1.1rem; }
-        .footer-group-title { display: block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 2rem; text-transform: uppercase; }
+        .hero-left { position: relative; z-index: 2; }
+
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-family: var(--mono); font-size: 0.72rem;
+            color: var(--accent2); text-transform: uppercase; letter-spacing: 0.12em;
+            margin-bottom: 2rem;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border2);
+            border-radius: 100px;
+            background: rgba(112,0,255,0.06);
+        }
+        .eyebrow-dot {
+            width: 5px; height: 5px;
+            background: var(--accent2);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.6); }
+        }
+
+        h1.hero-title {
+            font-size: clamp(3.8rem, 7.5vw, 7.5rem);
+            line-height: 0.88;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-sub {
+            font-family: var(--mono);
+            color: var(--muted2);
+            font-size: 1rem; line-height: 1.65;
+            max-width: 440px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-actions { display: flex; align-items: center; gap: 1.5rem; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700; font-size: 0.9rem;
+            border-radius: 6px;
+            transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+        }
+        .btn-primary:hover {
+            background: var(--accent2);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(112,0,255,0.35);
+        }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--muted2); font-size: 0.85rem; font-weight: 600;
+            text-decoration: none; transition: color 0.25s;
+        }
+        .btn-ghost:hover { color: var(--fg); }
+
+        /* Hero Right — Terminal */
+        .hero-right { position: relative; z-index: 2; display: flex; justify-content: flex-end; }
+        .terminal {
+            width: 100%; max-width: 500px;
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 50px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
+        }
+        .term-bar {
+            background: #1a1a1a;
+            padding: 0.8rem 1rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .term-dot { width: 11px; height: 11px; border-radius: 50%; }
+        .term-dot.red { background: #ff5f56; }
+        .term-dot.yellow { background: #ffbd2e; }
+        .term-dot.green { background: #27c93f; }
+        .term-title { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-left: auto; margin-right: auto; }
+        .term-body { padding: 1.4rem; font-family: var(--mono); font-size: 0.78rem; line-height: 1.9; }
+        .t-dim { color: #444; }
+        .t-blue { color: #60cdff; }
+        .t-green { color: #27c93f; }
+        .t-purple { color: var(--accent2); }
+        .t-white { color: var(--fg); }
+        .t-yellow { color: #f0db4f; }
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* ─── MARQUEE ─── */
+        .marquee-wrap {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 0;
+            overflow: hidden;
+            background: var(--bg2);
+        }
+        .marquee-track {
+            display: flex; gap: 3.5rem;
+            animation: marquee 35s linear infinite;
+            white-space: nowrap;
+        }
+        .marquee-track span {
+            font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.15em;
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+        .marquee-track .sep { color: var(--accent); }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ─── SERVICES ─── */
+        #services { background: var(--bg); }
+        .section-label {
+            font-family: var(--mono); font-size: 0.72rem;
+            color: var(--accent2); text-transform: uppercase; letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 800; line-height: 0.9;
+            text-transform: uppercase; letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+        .section-desc {
+            font-family: var(--mono); color: var(--muted2);
+            font-size: 0.95rem; line-height: 1.7;
+            max-width: 520px; margin-bottom: 5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .service-card {
+            background: var(--bg);
+            padding: 3.5rem;
+            position: relative; overflow: hidden;
+            transition: background 0.35s;
+        }
+        .service-card:hover { background: rgba(112,0,255,0.04); }
+        .service-card::before {
+            content: attr(data-n);
+            position: absolute; bottom: -1rem; right: 1rem;
+            font-size: 10rem; font-weight: 800;
+            color: rgba(255,255,255,0.025);
+            line-height: 1;
+            pointer-events: none;
+            transition: transform 0.5s cubic-bezier(0.23,1,0.32,1);
+        }
+        .service-card:hover::before { transform: translateY(-8px); }
+        .service-icon {
+            width: 44px; height: 44px;
+            border: 1px solid var(--border2);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.75rem;
+            background: rgba(112,0,255,0.07);
+            font-size: 1.2rem;
+        }
+        .service-card h3 {
+            font-size: 1.6rem; font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.9rem;
+        }
+        .service-card p {
+            font-family: var(--mono); color: var(--muted2);
+            font-size: 0.88rem; line-height: 1.65;
+            max-width: 320px;
+            position: relative;
+        }
+        .service-tag {
+            display: inline-block; margin-top: 1.5rem;
+            font-family: var(--mono); font-size: 0.7rem;
+            color: var(--accent2); text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 0.3rem 0.7rem;
+            border: 1px solid rgba(168,85,247,0.25);
+            border-radius: 4px;
+        }
+
+        /* ─── ABOUT ─── */
+        #about { background: var(--bg2); border-top: 1px solid var(--border); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        .about-right {}
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+        .stat-item {}
+        .stat-num {
+            font-size: 3.2rem; font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--fg);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-num span { color: var(--accent2); }
+        .stat-label {
+            font-family: var(--mono); font-size: 0.78rem;
+            color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .stack-list {
+            display: flex; flex-wrap: wrap; gap: 0.6rem;
+            margin-top: 2rem;
+        }
+        .stack-tag {
+            font-family: var(--mono); font-size: 0.72rem;
+            padding: 0.3rem 0.7rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--muted2);
+            text-transform: uppercase; letter-spacing: 0.08em;
+        }
+
+        /* ─── PROCESS ─── */
+        #process { background: var(--bg); border-top: 1px solid var(--border); }
+        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+        .process-step {
+            padding: 3rem 2rem;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .step-num {
+            font-family: var(--mono); font-size: 0.68rem;
+            color: var(--accent2); letter-spacing: 0.12em;
+            margin-bottom: 1.2rem;
+        }
+        .process-step h4 {
+            font-size: 1.15rem; font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.8rem;
+        }
+        .process-step p {
+            font-family: var(--mono); color: var(--muted2);
+            font-size: 0.82rem; line-height: 1.6;
+        }
+        .step-connector {
+            position: absolute; top: 3.6rem; right: -14px;
+            z-index: 2;
+            font-size: 0.7rem; color: var(--accent);
+        }
+        .process-step:last-child .step-connector { display: none; }
+
+        /* ─── CTA ─── */
+        #contact {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 10rem 0;
+        }
+        .cta-block {}
+        .cta-block .section-label { margin-bottom: 1.5rem; }
+        .cta-title {
+            font-size: clamp(3rem, 6vw, 6rem);
+            font-weight: 800; letter-spacing: -0.04em;
+            text-transform: uppercase; line-height: 0.88;
+            margin-bottom: 2rem;
+        }
+        .cta-sub {
+            font-family: var(--mono); color: var(--muted2);
+            font-size: 1rem; margin-bottom: 3.5rem;
+        }
+        .cta-actions { display: flex; justify-content: center; gap: 1.5rem; }
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            border: 1px solid var(--border2);
+            color: var(--accent2);
+            text-decoration: none;
+            font-weight: 700; font-size: 0.9rem;
+            border-radius: 6px;
+            transition: all 0.25s;
+        }
+        .btn-outline:hover {
+            background: rgba(112,0,255,0.08);
+            border-color: var(--accent2);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #030303;
+            border-top: 1px solid var(--border);
+            padding: 5rem 0 2.5rem;
+        }
+        .footer-top {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .footer-brand .logo-link { margin-bottom: 1.25rem; display: inline-flex; }
+        .footer-tagline {
+            font-family: var(--mono); color: var(--muted);
+            font-size: 0.88rem; line-height: 1.65;
+        }
+        .footer-col-label {
+            font-family: var(--mono); font-size: 0.68rem;
+            color: var(--accent2); text-transform: uppercase; letter-spacing: 0.15em;
+            margin-bottom: 1.5rem; display: block;
+        }
         .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 1rem; }
-        .footer-links a { color: var(--fg); text-decoration: none; font-size: 0.95rem; transition: 0.3s; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; color: var(--muted); font-size: 0.8rem; font-family: var(--font-mono); }
+        .footer-links li { margin-bottom: 0.85rem; }
+        .footer-links a {
+            text-decoration: none; color: var(--muted2);
+            font-size: 0.88rem; transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--fg); }
+        .footer-loc {
+            font-family: var(--mono); font-size: 0.82rem;
+            color: var(--muted); line-height: 1.7;
+        }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-copy {
+            font-family: var(--mono); font-size: 0.72rem;
+            color: var(--muted);
+        }
+        .footer-motto {
+            font-family: var(--mono); font-size: 0.72rem;
+            color: var(--muted);
+        }
 
-        /* --- Animations --- */
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        /* ─── SCROLL ANIMATIONS ─── */
+        [data-reveal] {
+            opacity: 0; transform: translateY(32px);
+            transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1),
+                        transform 0.7s cubic-bezier(0.23,1,0.32,1);
+        }
+        [data-reveal].visible {
+            opacity: 1; transform: translateY(0);
+        }
+        [data-reveal-delay="1"] { transition-delay: 0.1s; }
+        [data-reveal-delay="2"] { transition-delay: 0.2s; }
+        [data-reveal-delay="3"] { transition-delay: 0.3s; }
+        [data-reveal-delay="4"] { transition-delay: 0.4s; }
 
-        @media (max-width: 1024px) {
-            .footer-top { grid-template-columns: 1fr 1fr; }
-            .hero-visual { display: none; }
-            .hero-content { width: 100%; text-align: center; }
-            .hero-p { margin: 0 auto; }
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1100px) {
+            .hero { grid-template-columns: 1fr; padding-top: 9rem; }
+            .hero-right { display: none; }
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            :root { --gutter: 1.25rem; }
+            nav { gap: 1.5rem; }
+            nav a:not(.cta-link) { display: none; }
             .services-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .cta-actions { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-    <header>
-        <div class="container header-inner">
-            <a href="#" class="header-logo">Moneural<span class="accent-dot">.</span></a>
-            <nav class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#work">Work</a>
-                <a href="#about">About</a>
-                <a href="#contact" class="nav-cta">Let's Talk →</a>
-            </nav>
-        </div>
-    </header>
+<!-- ─── HEADER ─── -->
+<header>
+    <div class="wrap header-inner">
+        <a href="#" class="logo-link">
+            <img class="logo-img" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAEAAQADASIAAhEBAxEB/8QAHQABAAIDAQEBAQAAAAAAAAAAAAMEBQYHAgEI..." alt="Moneural Logo">
+            <span class="logo-text">Moneural<span class="logo-dot">.</span></span>
+        </a>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#process">Process</a>
+            <a href="#contact" class="cta-link">Let's Talk →</a>
+        </nav>
+    </div>
+</header>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-visual">
-                    <div style="color: #444; margin-bottom: 15px;">// MONEURAL_SYSTEM_v2.0</div>
-                    <div><span class="t-blue">root@moneural:</span><span class="t-green">~#</span> analyze --business="ambitious"</div>
-                    <div style="margin-top: 10px;">> Scanning workflows...</div>
-                    <div>> Identifying AI bottlenecks...</div>
-                    <div>> Architecting <span class="t-blue">scalable_SaaS</span></div>
-                    <div style="margin-top: 10px;" class="t-green">✓ Ready for deployment.</div>
-                    <div style="margin-top: 20px;" class="t-blue">_</div>
-                </div>
-                <div class="hero-content">
-                    <h1 class="hero-title">Engineering<br><em>Intelligent</em><br>Advantages</h1>
-                    <p class="hero-p">
-                        Based in Hyderabad, we build custom AI agents and high-performance software for businesses ready to scale without increasing overhead.
-                    </p>
-                </div>
+<!-- ─── HERO ─── -->
+<section class="hero">
+    <div class="wrap" style="display:contents">
+        <div class="hero-left" style="padding: 0 var(--gutter);">
+            <div class="hero-eyebrow" data-reveal>
+                <span class="eyebrow-dot"></span>
+                Based in Hyderabad, India
             </div>
-        </section>
-
-        <!-- MARQUEE -->
-        <div class="marquee">
-            <div class="marquee-track">
-                <span>AI Strategy</span> <span>✦</span>
-                <span>Custom Software</span> <span>✦</span>
-                <span>Micro-SaaS Architecture</span> <span>✦</span>
-                <span>LLM Integration</span> <span>✦</span>
-                <span>ERPNext Customization</span> <span>✦</span>
-                <span>AI Strategy</span> <span>✦</span>
-                <span>Custom Software</span> <span>✦</span>
-                <span>Micro-SaaS Architecture</span> <span>✦</span>
-                <span>LLM Integration</span> <span>✦</span>
-                <span>ERPNext Customization</span> <span>✦</span>
+            <h1 class="hero-title" data-reveal data-reveal-delay="1">
+                Engineering<br><em>Intelligent</em><br>Advantages
+            </h1>
+            <p class="hero-sub" data-reveal data-reveal-delay="2">
+                We build custom AI agents and high-performance software for businesses ready to scale without expanding overhead.
+            </p>
+            <div class="hero-actions" data-reveal data-reveal-delay="3">
+                <a href="#contact" class="btn-primary">Start a Project →</a>
+                <a href="#services" class="btn-ghost">Explore Services ↓</a>
             </div>
         </div>
-
-        <!-- SERVICES -->
-        <section class="section" id="services">
-            <div class="container">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-bg">01</div>
-                        <h3>AI Consulting</h3>
-                        <p>We identify high-leverage points in your workflow where LLMs can automate hours of manual labor.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-bg">02</div>
-                        <h3>Custom SaaS</h3>
-                        <p>Specializing in niche multi-tenant products built with Frappe/ERPNext for industrial reliability.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-bg">03</div>
-                        <h3>Software Engineering</h3>
-                        <p>Full-stack mobile and web applications designed for manufacturing, logistics, and scale.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-bg">04</div>
-                        <h3>Automation</h3>
-                        <p>Connecting your siloed tools into a single, intelligent ecosystem with real-time data pipelines.</p>
-                    </div>
+        <div class="hero-right" style="padding: 0 var(--gutter);">
+            <div class="terminal" data-reveal data-reveal-delay="2">
+                <div class="term-bar">
+                    <span class="term-dot red"></span>
+                    <span class="term-dot yellow"></span>
+                    <span class="term-dot green"></span>
+                    <span class="term-title">moneural_system_v2.0</span>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="footer-logo">Moneural<span class="accent-dot">.</span></span>
-                    <p class="footer-tagline">Building intelligent systems<br />for ambitious businesses.</p>
+                <div class="term-body">
+                    <div class="t-dim">// MONEURAL AI PLATFORM — INITIALIZING</div>
+                    <br>
+                    <div><span class="t-blue">root@moneural</span><span class="t-dim">:</span><span class="t-green">~</span><span class="t-dim"># </span><span class="t-white">analyze --target="ambitious-business"</span></div>
+                    <br>
+                    <div class="t-dim">› Scanning existing workflows...</div>
+                    <div class="t-dim">› Profiling AI bottlenecks...</div>
+                    <div class="t-dim">› Mapping data pipelines...</div>
+                    <br>
+                    <div><span class="t-green">✓</span> <span class="t-white">High-leverage nodes identified</span></div>
+                    <div><span class="t-green">✓</span> <span class="t-white">LLM integration points mapped</span></div>
+                    <div><span class="t-green">✓</span> <span class="t-white">SaaS architecture ready</span></div>
+                    <br>
+                    <div><span class="t-purple">$</span> <span class="t-white">deploy --mode=production</span></div>
+                    <div><span class="t-yellow">→ Estimated ROI: </span><span class="t-green">3.8x</span></div>
+                    <br>
+                    <div><span class="t-blue">_</span><span class="cursor-blink t-dim">█</span></div>
                 </div>
-
-                <div>
-                    <span class="footer-group-title">Services</span>
-                    <ul class="footer-links">
-                        <li><a href="#">AI Strategy</a></li>
-                        <li><a href="#">SaaS Development</a></li>
-                        <li><a href="#">Process Automation</a></li>
-                        <li><a href="#">ERPNext Setup</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <span class="footer-group-title">Company</span>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#work">Our Work</a></li>
-                        <li><a href="#">Insights</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <span class="footer-group-title">Location</span>
-                    <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.6;">
-                        Balanagar, Hyderabad<br>
-                        Telangana, India 🇮🇳
-                    </p>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div>© 2026 Moneural Consulting. All rights reserved.</div>
-                <div>Designed for the Next Industrial Revolution.</div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Custom Cursor Movement
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-wrap">
+    <div class="marquee-track">
+        <span>AI Strategy</span><span class="sep">✦</span>
+        <span>Custom Software</span><span class="sep">✦</span>
+        <span>Micro-SaaS Architecture</span><span class="sep">✦</span>
+        <span>LLM Integration</span><span class="sep">✦</span>
+        <span>ERPNext Customization</span><span class="sep">✦</span>
+        <span>Process Automation</span><span class="sep">✦</span>
+        <span>AI Strategy</span><span class="sep">✦</span>
+        <span>Custom Software</span><span class="sep">✦</span>
+        <span>Micro-SaaS Architecture</span><span class="sep">✦</span>
+        <span>LLM Integration</span><span class="sep">✦</span>
+        <span>ERPNext Customization</span><span class="sep">✦</span>
+        <span>Process Automation</span><span class="sep">✦</span>
+    </div>
+</div>
 
-        // Hover Effect
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(4)');
-            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
-        });
-    </script>
+<!-- ─── SERVICES ─── -->
+<section id="services">
+    <div class="wrap">
+        <p class="section-label" data-reveal>What We Build</p>
+        <h2 class="section-title" data-reveal data-reveal-delay="1">
+            Four pillars.<br><em>Infinite</em> leverage.
+        </h2>
+        <p class="section-desc" data-reveal data-reveal-delay="2">
+            Each engagement is scoped around real business outcomes — not tech for its own sake. We move fast, ship clean, and disappear when the work is done.
+        </p>
+        <div class="services-grid" data-reveal>
+            <div class="service-card" data-n="01">
+                <div class="service-icon">🧠</div>
+                <h3>AI Consulting</h3>
+                <p>We identify high-leverage points in your workflow where LLMs can automate hours of manual labor — from document parsing to decision support.</p>
+                <span class="service-tag">Strategy → Implementation</span>
+            </div>
+            <div class="service-card" data-n="02">
+                <div class="service-icon">⚡</div>
+                <h3>Custom SaaS</h3>
+                <p>Specializing in niche multi-tenant products built with Frappe/ERPNext for industrial reliability. From ideation to production in weeks, not months.</p>
+                <span class="service-tag">Frappe · ERPNext · Multi-tenant</span>
+            </div>
+            <div class="service-card" data-n="03">
+                <div class="service-icon">🛠</div>
+                <h3>Software Engineering</h3>
+                <p>Full-stack mobile and web applications designed for manufacturing, logistics, and scale. Clean architecture. No legacy debt.</p>
+                <span class="service-tag">Web · Mobile · APIs</span>
+            </div>
+            <div class="service-card" data-n="04">
+                <div class="service-icon">🔗</div>
+                <h3>Automation</h3>
+                <p>Connecting your siloed tools into a single intelligent ecosystem with real-time data pipelines and event-driven workflows.</p>
+                <span class="service-tag">n8n · Zapier · Custom</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+    <div class="wrap">
+        <div class="about-grid">
+            <div class="about-left">
+                <p class="section-label" data-reveal>Who We Are</p>
+                <h2 class="section-title" data-reveal data-reveal-delay="1">
+                    Built for the<br><em>next</em> industrial<br>revolution.
+                </h2>
+                <p class="section-desc" style="margin-bottom: 0;" data-reveal data-reveal-delay="2">
+                    Moneural is a boutique AI and software consultancy based in Hyderabad. We work with ambitious founders and operators who understand that intelligence is the last real competitive moat.
+                </p>
+                <div class="stack-list" data-reveal data-reveal-delay="3">
+                    <span class="stack-tag">Python</span>
+                    <span class="stack-tag">FastAPI</span>
+                    <span class="stack-tag">LangChain</span>
+                    <span class="stack-tag">OpenAI</span>
+                    <span class="stack-tag">Frappe</span>
+                    <span class="stack-tag">React</span>
+                    <span class="stack-tag">PostgreSQL</span>
+                    <span class="stack-tag">Redis</span>
+                </div>
+            </div>
+            <div class="about-right" data-reveal data-reveal-delay="2">
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-num">40<span>+</span></div>
+                        <div class="stat-label">Projects Shipped</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">3<span>x</span></div>
+                        <div class="stat-label">Avg. ROI Delivered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">8<span>+</span></div>
+                        <div class="stat-label">Industries Served</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">100<span>%</span></div>
+                        <div class="stat-label">Remote-Ready</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section id="process">
+    <div class="wrap">
+        <p class="section-label" data-reveal>How We Work</p>
+        <h2 class="section-title" data-reveal data-reveal-delay="1" style="margin-bottom: 4rem;">
+            From problem<br>to <em>production</em>.
+        </h2>
+        <div class="process-steps">
+            <div class="process-step" data-reveal>
+                <div class="step-num">STEP 01</div>
+                <h4>Discovery</h4>
+                <p>Deep-dive into your workflows, data, and bottlenecks. We map what's worth automating and what isn't.</p>
+                <span class="step-connector">→</span>
+            </div>
+            <div class="process-step" data-reveal data-reveal-delay="1">
+                <div class="step-num">STEP 02</div>
+                <h4>Architecture</h4>
+                <p>We design a lean system — no over-engineering. Every component earns its place with a clear ROI case.</p>
+                <span class="step-connector">→</span>
+            </div>
+            <div class="process-step" data-reveal data-reveal-delay="2">
+                <div class="step-num">STEP 03</div>
+                <h4>Build & Iterate</h4>
+                <p>Sprint-based delivery. You see working software every two weeks. Feedback loops are tight by design.</p>
+                <span class="step-connector">→</span>
+            </div>
+            <div class="process-step" data-reveal data-reveal-delay="3">
+                <div class="step-num">STEP 04</div>
+                <h4>Deploy & Scale</h4>
+                <p>Production-grade deployment with monitoring, documentation, and a handoff plan that actually works.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="contact">
+    <div class="wrap">
+        <div class="cta-block">
+            <p class="section-label" data-reveal>Get in Touch</p>
+            <h2 class="cta-title" data-reveal data-reveal-delay="1">
+                Ready to<br><em>move fast?</em>
+            </h2>
+            <p class="cta-sub" data-reveal data-reveal-delay="2">Tell us what you're building. We'll tell you if we're the right fit.</p>
+            <div class="cta-actions" data-reveal data-reveal-delay="3">
+                <a href="mailto:hello@moneural.com" class="btn-primary">hello@moneural.com ↗</a>
+                <a href="#services" class="btn-outline">View Services →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="wrap">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#" class="logo-link">
+                    <img class="logo-img" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAEAAQADASIAAhEBAxEB/8QAHQABAAIDAQEBAQAAAAAAAAAAAAMEBQYHAgEI..." alt="Moneural">
+                    <span class="logo-text">Moneural<span class="logo-dot">.</span></span>
+                </a>
+                <p class="footer-tagline">Building intelligent systems<br>for ambitious businesses.</p>
+            </div>
+            <div>
+                <span class="footer-col-label">Services</span>
+                <ul class="footer-links">
+                    <li><a href="#">AI Strategy</a></li>
+                    <li><a href="#">SaaS Development</a></li>
+                    <li><a href="#">Process Automation</a></li>
+                    <li><a href="#">ERPNext Setup</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="footer-col-label">Company</span>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#process">Our Process</a></li>
+                    <li><a href="#">Insights</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="footer-col-label">Location</span>
+                <p class="footer-loc">Balanagar, Hyderabad<br>Telangana, India 🇮🇳</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">© 2026 Moneural Consulting. All rights reserved.</span>
+            <span class="footer-motto">Designed for the Next Industrial Revolution.</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ─── CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+});
+function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+}
+animateRing();
+document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(3)';
+        ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+        ring.style.borderColor = 'rgba(168,85,247,0.8)';
+    });
+    el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.borderColor = 'rgba(112,0,255,0.5)';
+    });
+});
+
+// ─── SCROLL REVEAL
+const reveals = document.querySelectorAll('[data-reveal]');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+// ─── SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
 </body>
 </html>
