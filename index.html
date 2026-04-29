@@ -1,438 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Moneural — AI & Software Consulting. Building intelligent systems that scale your business from Hyderabad, India." />
-  <title>Moneural — Intelligent Systems</title>
-  
-  <!-- Typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moneural — Building Intelligent Systems</title>
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --fg: #f5f5f5;
-      --accent: #7000ff; /* Electric Indigo */
-      --accent-soft: rgba(112, 0, 255, 0.1);
-      --muted: #888;
-      --border: rgba(255,255,255,0.1);
-      --font-main: 'Syne', sans-serif;
-      --font-serif: 'Instrument Serif', serif;
-      --font-mono: 'DM Mono', monospace;
-      --container: 1200px;
-    }
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: #ffffff;
+            --accent: #7000ff;
+            --muted: #888888;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Syne', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+            --font-mono: 'DM Mono', monospace;
+        }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--bg); }
 
-    body {
-      background-color: var(--bg);
-      color: var(--fg);
-      font-family: var(--font-main);
-      line-height: 1.5;
-      overflow-x: hidden;
-      cursor: none; /* Custom cursor */
-    }
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-    /* Custom Cursor */
-    #cursor {
-      width: 10px; height: 10px;
-      background: var(--fg);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s ease;
-    }
-    #cursor-follower {
-      width: 40px; height: 40px;
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.2s ease, width 0.3s, height 0.3s;
-    }
+        /* --- Custom Cursor --- */
+        #cursor {
+            width: 8px; height: 8px; background: var(--fg);
+            border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
+            mix-blend-mode: difference; transition: transform 0.1s;
+        }
 
-    /* Utility */
-    .container { max-width: var(--container); margin: 0 auto; padding: 0 2rem; }
-    .section { padding: 8rem 0; }
-    em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent); }
-    .accent-dot { color: var(--accent); }
+        /* --- Layout --- */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 8rem 0; }
+        em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent); text-transform: none; }
+        .accent-dot { color: var(--accent); }
 
-    /* Navigation */
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%;
-      padding: 1.5rem 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .logo {
-      font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--fg);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: var(--muted);
-      font-size: 0.9rem; font-weight: 500;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--fg); }
-    .nav-cta {
-      background: var(--fg); color: var(--bg) !important;
-      padding: 0.6rem 1.2rem; border-radius: 4px;
-    }
+        /* --- Header --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1.5rem 0; backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .header-logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--fg); letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--fg); }
+        .nav-cta { color: var(--accent) !important; }
 
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      position: relative; overflow: hidden;
-      padding-top: 100px;
-    }
-    .hero-bg-grid {
-      position: absolute; inset: 0;
-      background-image: radial-gradient(var(--border) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse at center, black, transparent 80%);
-      z-index: -1;
-    }
-    .hero-title {
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      line-height: 0.9;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-    }
-    .hero-sub {
-      font-size: 1.2rem; color: var(--muted);
-      max-width: 600px; margin-bottom: 3rem;
-      font-family: var(--font-mono);
-    }
-    .hero-visual {
-      position: absolute; right: -5%; top: 50%;
-      transform: translateY(-50%);
-      width: 40%; aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .orb {
-      width: 80%; height: 80%;
-      background: linear-gradient(45deg, var(--accent), #00d4ff);
-      filter: blur(80px);
-      border-radius: 50%;
-      animation: pulse 10s infinite alternate;
-      opacity: 0.4;
-    }
+        /* --- Hero --- */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; position: relative;
+            background-image: radial-gradient(circle at 2px 2px, var(--border) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .hero-content { position: relative; z-index: 2; width: 60%; }
+        .hero-title { font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: 0.85; font-weight: 800; margin-bottom: 2rem; text-transform: uppercase; }
+        .hero-p { font-family: var(--font-mono); color: var(--muted); font-size: 1.1rem; max-width: 500px; line-height: 1.6; }
+        
+        .hero-visual {
+            position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+            width: 35%; height: 400px; background: #0a0a0a; border: 1px solid var(--border);
+            border-radius: 12px; box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            font-family: var(--font-mono); padding: 20px; overflow: hidden;
+        }
 
-    /* Terminal Component */
-    .terminal {
-      background: #111;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      width: 100%; max-width: 500px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-      font-family: var(--font-mono);
-      font-size: 13px;
-      overflow: hidden;
-    }
-    .terminal-header {
-      background: #222; padding: 10px 15px;
-      display: flex; gap: 6px;
-    }
-    .t-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .terminal-body { padding: 20px; color: #aaa; }
-    .t-blue { color: #00d4ff; }
-    .t-green { color: var(--accent); }
+        /* --- Terminal Text --- */
+        .t-red { color: #ff5f56; } .t-green { color: #27c93f; } .t-blue { color: #00d4ff; }
 
-    /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .service-card {
-      background: var(--bg);
-      padding: 3rem;
-      transition: all 0.4s ease;
-      position: relative;
-    }
-    .service-card:hover { background: #0f0f0f; }
-    .service-num {
-      font-family: var(--font-mono);
-      color: var(--accent);
-      font-size: 0.8rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .service-card h3 { font-size: 1.8rem; margin-bottom: 1.5rem; }
-    .service-card p { color: var(--muted); font-size: 0.95rem; }
+        /* --- Services Grid --- */
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+        .service-card { background: var(--bg); padding: 4rem; position: relative; overflow: hidden; }
+        .service-card:hover .service-bg { transform: scale(1.1); opacity: 0.1; }
+        .service-bg { 
+            position: absolute; top: -20%; right: -20%; font-size: 15rem; 
+            font-weight: 800; opacity: 0.03; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .service-card h3 { font-size: 2rem; margin-bottom: 1rem; position: relative; }
+        .service-card p { color: var(--muted); max-width: 350px; position: relative; }
 
-    /* Marquee */
-    .marquee {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 2rem 0;
-      overflow: hidden;
-      display: flex;
-    }
-    .marquee-content {
-      display: flex; gap: 4rem;
-      animation: scroll 20s linear infinite;
-      white-space: nowrap;
-      font-size: 2rem; font-weight: 800;
-      text-transform: uppercase;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--border);
-    }
+        /* --- Marquee --- */
+        .marquee { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem 0; overflow: hidden; display: flex; }
+        .marquee-track { display: flex; gap: 4rem; animation: scroll 30s linear infinite; white-space: nowrap; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; color: var(--muted); }
 
-    /* Contact Section */
-    .contact-wrapper {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    }
-    .form-group { margin-bottom: 2rem; }
-    label { display: block; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
-    input, textarea, select {
-      width: 100%; background: transparent;
-      border: none; border-bottom: 1px solid var(--border);
-      padding: 1rem 0; color: var(--fg);
-      font-family: inherit; font-size: 1.1rem;
-      outline: none; transition: border-color 0.3s;
-    }
-    input:focus { border-color: var(--accent); }
-    .submit-btn {
-      background: var(--accent); color: white;
-      border: none; padding: 1.2rem 3rem;
-      font-weight: 700; cursor: pointer;
-      font-family: var(--font-main);
-      text-transform: uppercase; letter-spacing: 1px;
-    }
+        /* --- Footer --- */
+        .footer { padding: 6rem 0 3rem 0; border-top: 1px solid var(--border); background: #030303; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-logo { font-size: 2rem; font-weight: 800; display: block; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .footer-tagline { color: var(--muted); line-height: 1.6; font-size: 1.1rem; }
+        .footer-group-title { display: block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 2rem; text-transform: uppercase; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 1rem; }
+        .footer-links a { color: var(--fg); text-decoration: none; font-size: 0.95rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; color: var(--muted); font-size: 0.8rem; font-family: var(--font-mono); }
 
-    /* Footer */
-    footer { padding: 4rem 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
-    .footer-inner { display: flex; justify-content: space-between; }
+        /* --- Animations --- */
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    @keyframes pulse {
-      0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.2) translate(20px, -20px); }
-    }
-
-    @media (max-width: 992px) {
-      .hero-visual { display: none; }
-      .contact-wrapper { grid-template-columns: 1fr; }
-      .hero { text-align: center; }
-      .hero-sub { margin: 0 auto 3rem; }
-      .nav-links { display: none; }
-    }
-  </style>
+        @media (max-width: 1024px) {
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .hero-visual { display: none; }
+            .hero-content { width: 100%; text-align: center; }
+            .hero-p { margin: 0 auto; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-  <div id="cursor"></div>
-  <div id="cursor-follower"></div>
+    <div id="cursor"></div>
 
-  <nav>
-    <div class="container nav-inner">
-      <a href="#" class="logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="#7000ff" stroke-width="2"/>
-        </svg>
-        Moneural<span class="accent-dot">.</span>
-      </a>
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#work">Our Process</a>
-        <a href="#about">About</a>
-        <a href="#contact" class="nav-cta">Work With Us</a>
-      </div>
-    </div>
-  </nav>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg-grid"></div>
-      <div class="container">
-        <div class="hero-visual">
-          <div class="orb"></div>
-          <div class="terminal">
-            <div class="terminal-header">
-              <div class="t-dot" style="background:#ff5f56"></div>
-              <div class="t-dot" style="background:#ffbd2e"></div>
-              <div class="t-dot" style="background:#27c93f"></div>
-            </div>
-            <div class="terminal-body">
-              <div><span class="t-blue">moneural</span> start --project="growth"</div>
-              <div style="margin-top:10px">...Analyzing workflows</div>
-              <div>...Integrating <span class="t-green">LLM_Core_v4</span></div>
-              <div>...Deploying to <span class="t-blue">Edge_Cluster</span></div>
-              <div style="margin-top:10px" class="t-green">✓ System Intelligent & Scalable.</div>
-            </div>
-          </div>
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="header-logo">Moneural<span class="accent-dot">.</span></a>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="nav-cta">Let's Talk →</a>
+            </nav>
         </div>
-        
-        <p style="font-family:var(--font-mono); color:var(--accent); margin-bottom:1rem;">✦ Hyderabad, India</p>
-        <h1 class="hero-title">
-          Scale with<br /><em>Intelligent</em><br />Software
-        </h1>
-        <p class="hero-sub">
-          We transform manual business processes into high-performance digital systems using custom AI agents and scalable SaaS architectures.
-        </p>
-        <div style="display:flex; gap:1rem;">
-          <a href="#contact" class="submit-btn" style="text-decoration:none; display:inline-block; font-size:0.9rem;">Launch Project</a>
-        </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- MARQUEE -->
-    <div class="marquee">
-      <div class="marquee-content">
-        <span>AI Strategy</span> <span>✦</span>
-        <span>ERPNext Customization</span> <span>✦</span>
-        <span>Micro-SaaS Architecture</span> <span>✦</span>
-        <span>Process Automation</span> <span>✦</span>
-        <span>AI Strategy</span> <span>✦</span>
-        <span>ERPNext Customization</span> <span>✦</span>
-        <span>Micro-SaaS Architecture</span> <span>✦</span>
-        <span>Process Automation</span> <span>✦</span>
-      </div>
-    </div>
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-visual">
+                    <div style="color: #444; margin-bottom: 15px;">// MONEURAL_SYSTEM_v2.0</div>
+                    <div><span class="t-blue">root@moneural:</span><span class="t-green">~#</span> analyze --business="ambitious"</div>
+                    <div style="margin-top: 10px;">> Scanning workflows...</div>
+                    <div>> Identifying AI bottlenecks...</div>
+                    <div>> Architecting <span class="t-blue">scalable_SaaS</span></div>
+                    <div style="margin-top: 10px;" class="t-green">✓ Ready for deployment.</div>
+                    <div style="margin-top: 20px;" class="t-blue">_</div>
+                </div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Engineering<br><em>Intelligent</em><br>Advantages</h1>
+                    <p class="hero-p">
+                        Based in Hyderabad, we build custom AI agents and high-performance software for businesses ready to scale without increasing overhead.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- SERVICES -->
-    <section class="section" id="services">
-      <div class="container">
-        <div style="margin-bottom: 4rem;">
-          <p style="font-family:var(--font-mono); font-size:0.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:2px;">Expertise</p>
-          <h2 style="font-size:3.5rem; font-weight:800;">Solutions for <br /><em>Scale</em></h2>
+        <!-- MARQUEE -->
+        <div class="marquee">
+            <div class="marquee-track">
+                <span>AI Strategy</span> <span>✦</span>
+                <span>Custom Software</span> <span>✦</span>
+                <span>Micro-SaaS Architecture</span> <span>✦</span>
+                <span>LLM Integration</span> <span>✦</span>
+                <span>ERPNext Customization</span> <span>✦</span>
+                <span>AI Strategy</span> <span>✦</span>
+                <span>Custom Software</span> <span>✦</span>
+                <span>Micro-SaaS Architecture</span> <span>✦</span>
+                <span>LLM Integration</span> <span>✦</span>
+                <span>ERPNext Customization</span> <span>✦</span>
+            </div>
         </div>
 
-        <div class="services-grid">
-          <div class="service-card">
-            <span class="service-num">01/</span>
-            <h3>AI Consulting</h3>
-            <p>We don't just build chatbots. We map your business workflows to find high-impact AI integration points that actually save man-hours.</p>
-          </div>
-          <div class="service-card">
-            <span class="service-num">02/</span>
-            <h3>Micro-SaaS Build</h3>
-            <p>Developing niche multi-tenant platforms on top of ERPNext. We handle the heavy lifting of infrastructure so you can focus on the niche.</p>
-          </div>
-          <div class="service-card">
-            <span class="service-num">03/</span>
-            <h3>Custom Software</h3>
-            <p>High-performance web and mobile apps designed to solve specific operational bottlenecks in manufacturing and logistics.</p>
-          </div>
-          <div class="service-card">
-            <span class="service-num">04/</span>
-            <h3>Automation</h3>
-            <p>Connecting your existing tools (Google Workspace, WhatsApp, ERPs) through intelligent data pipelines and automated reporting.</p>
-          </div>
+        <!-- SERVICES -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-bg">01</div>
+                        <h3>AI Consulting</h3>
+                        <p>We identify high-leverage points in your workflow where LLMs can automate hours of manual labor.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-bg">02</div>
+                        <h3>Custom SaaS</h3>
+                        <p>Specializing in niche multi-tenant products built with Frappe/ERPNext for industrial reliability.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-bg">03</div>
+                        <h3>Software Engineering</h3>
+                        <p>Full-stack mobile and web applications designed for manufacturing, logistics, and scale.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-bg">04</div>
+                        <h3>Automation</h3>
+                        <p>Connecting your siloed tools into a single, intelligent ecosystem with real-time data pipelines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">Moneural<span class="accent-dot">.</span></span>
+                    <p class="footer-tagline">Building intelligent systems<br />for ambitious businesses.</p>
+                </div>
+
+                <div>
+                    <span class="footer-group-title">Services</span>
+                    <ul class="footer-links">
+                        <li><a href="#">AI Strategy</a></li>
+                        <li><a href="#">SaaS Development</a></li>
+                        <li><a href="#">Process Automation</a></li>
+                        <li><a href="#">ERPNext Setup</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="footer-group-title">Company</span>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#work">Our Work</a></li>
+                        <li><a href="#">Insights</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="footer-group-title">Location</span>
+                    <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.6;">
+                        Balanagar, Hyderabad<br>
+                        Telangana, India 🇮🇳
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2026 Moneural Consulting. All rights reserved.</div>
+                <div>Designed for the Next Industrial Revolution.</div>
+            </div>
         </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- CONTACT -->
-    <section class="section" id="contact" style="background:#050505;">
-      <div class="container">
-        <div class="contact-wrapper">
-          <div>
-            <h2 style="font-size:4rem; line-height:1;">Ready to<br /><em>Modernize?</em></h2>
-            <p style="color:var(--muted); margin-top:2rem; max-width:400px; font-family:var(--font-mono);">
-              Based in Hyderabad, serving ambitious teams globally. We typically respond within 12 hours.
-            </p>
-            <div style="margin-top:3rem;">
-              <p style="color:var(--accent); font-family:var(--font-mono);">Email</p>
-              <p style="font-size:1.5rem;">info@moneural.com</p>
-            </div>
-          </div>
-          
-          <form id="contactForm">
-            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
-              <div class="form-group">
-                <label>Name</label>
-                <input type="text" placeholder="John Doe" required>
-              </div>
-              <div class="form-group">
-                <label>Company</label>
-                <input type="text" placeholder="Acme Corp">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Service Interested In</label>
-              <select>
-                <option>AI Strategy</option>
-                <option>Micro-SaaS Dev</option>
-                <option>Custom Software</option>
-                <option>Automation</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Project Details</label>
-              <textarea rows="4" placeholder="Tell us about the challenge..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Proposal →</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
+    <script>
+        // Custom Cursor Movement
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div>© 2026 Moneural Consulting. All rights reserved.</div>
-        <div style="display:flex; gap:2rem;">
-          <a href="#" style="color:inherit; text-decoration:none;">LinkedIn</a>
-          <a href="#" style="color:inherit; text-decoration:none;">WhatsApp</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Custom Cursor Logic
-    const cursor = document.getElementById('cursor');
-    const follower = document.getElementById('cursor-follower');
-
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      
-      setTimeout(() => {
-        follower.style.left = (e.clientX - 15) + 'px';
-        follower.style.top = (e.clientY - 15) + 'px';
-      }, 50);
-    });
-
-    // Hover effects for links
-    document.querySelectorAll('a, button').forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        follower.style.transform = 'scale(1.5)';
-        follower.style.background = 'rgba(112, 0, 255, 0.1)';
-      });
-      link.addEventListener('mouseleave', () => {
-        follower.style.transform = 'scale(1)';
-        follower.style.background = 'transparent';
-      });
-    });
-
-    // Simple Form Handle
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you! Our engineering lead will reach out shortly.');
-    });
-  </script>
+        // Hover Effect
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(4)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
+    </script>
 </body>
 </html>
